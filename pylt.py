@@ -90,3 +90,4 @@ if __name__ == '__main__':
     model = Lit(784, 500, 10)
     trainer = Trainer(max_epochs=3, fast_dev_run=False, gpus=1)
     trainer.fit(model)
+    print("hello ")
