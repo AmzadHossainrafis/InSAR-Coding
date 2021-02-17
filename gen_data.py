@@ -76,7 +76,7 @@ class Dataset(torch.utils.data.Dataset):
         targreal  = np.copy(ifgreal)
         targimag  = np.copy(ifgimag)
         
-        mid_pixel = patch_size // 2 #10 
+        mid_pixel = patch_size // 2 #10 half point 
     
         ifgreal[mid_pixel,mid_pixel] = 0     
         ifgimag[mid_pixel,mid_pixel] = 0     # avoid learning identity mapping
@@ -92,7 +92,12 @@ class Dataset(torch.utils.data.Dataset):
 ''' 
 Returns the training generator.
 '''
-def dataloaderReturn(path_json):
-    training_set = Dataset(path_json)
+def dataloaderReturn(path_json):#simple dataloader take the path of the file folder  
+    training_set = Dataset(path_json)# create a abj=dataset classs defain in the top it will call the constructor including the path return a list of path of all the data 
     training_generator = torch.utils.data.DataLoader(training_set, **params)
+    """params = {'batch_size': 64,
+          'shuffle': True,
+          'num_workers': 8,
+          'drop_last': True}"""
+
     return training_generator
