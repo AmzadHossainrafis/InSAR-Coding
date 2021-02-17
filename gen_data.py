@@ -76,7 +76,7 @@ class Dataset(torch.utils.data.Dataset):
         targreal  = np.copy(ifgreal)
         targimag  = np.copy(ifgimag)
         
-        mid_pixel = patch_size // 2
+        mid_pixel = patch_size // 2 #10 
     
         ifgreal[mid_pixel,mid_pixel] = 0     
         ifgimag[mid_pixel,mid_pixel] = 0     # avoid learning identity mapping
