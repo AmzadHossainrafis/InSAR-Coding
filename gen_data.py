@@ -19,6 +19,7 @@ params = {'batch_size': 64,
 
 
 '''
+
 DataSet Class :
 Input: Path for the Json file
 Output: Batch_size x 21 x 21 x 2 
@@ -45,6 +46,7 @@ class Dataset(torch.utils.data.Dataset):
         'Generates one sample of data'
         index = (index)// (50*64)
         x=self.dataarray[index]
+        #\"/mnt/hdd1/3vG_data/caric_20170623_data/tsx_chuquicamata_sm_dsc_1000x1000_crop/ifg_fr/20150128_20150208.diff.orb_corwidth1000height1000\"
         ifgpath = x.split("width")[0] # Extracting ifgpath , width and height of the ifg from the string. 
 # Extracting ifgpath , width and height of the ifg from the string. #when ever it encounter the "width" it will be split from there 
         '''exp h="do you knw hight and width is the boss of the town"
