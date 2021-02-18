@@ -8,21 +8,25 @@ import glob
 import tqdm
 import logging
 from datetime import datetime
-import re
+import re #for finding pattern /this module let you check if a particular string matches a given regular expression (or if a given regular expression matches a particular string, which comes down to the same thing).
 
 log = logging.getLogger(__name__)
 
 
-def get_delta_days(date_string):
-    date_format = "%Y%m%d"
-    tokens = re.split("_|\.", date_string)
-    date1 = datetime.strptime(tokens[0], date_format)
-    date2 = datetime.strptime(tokens[1], date_format)
-    delta_days = np.abs((date2 - date1).days)
+def get_delta_days(date_string): 
+    '''this function find out the basic def of date'''
+    date_format = "%Y%m%d"#This is the main formet the date represented in the reseource 
+    tokens = re.split("_|\.", date_string) #for slpling the date from the given filde 
+    date1 = datetime.strptime(tokens[0], date_format) #left side of the split is store in tokens[0]
+    # example of datetime.stritime >>>date_string = "21 June, 2018" 
+    #>>date_object = datetime.strptime(date_string, "%d %B, %Y")
+    #>>date_object = 2018-06-21 in this the date formeting is deff
+    date2 = datetime.strptime(tokens[1], date_format) # right side of the split  
+    delta_days = np.abs((date2 - date1).days) # just find out the absulute deff between the dates 
     return delta_days
 
 
-class SpatialTemporalDataset(Dataset):
+class SpatialTemporalDataset(Dataset):#inharit the dataset class
 
     def __init__(self,
                  filt_dir,
