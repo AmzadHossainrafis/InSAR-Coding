@@ -43,23 +43,22 @@ class SpatialTemporalDataset(Dataset):#inharit the dataset class
                  ref_he_path,
                  patch_size=38,
                  stride=0.5):
-        self.filt_paths = sorted(glob.glob('{}/*{}'.format(filt_dir, filt_ext)))
-        self.bperp_paths = sorted(glob.glob('{}/*{}'.format(bperp_dir, bperp_ext)))
-        self.coh_paths = sorted(glob.glob('{}/*{}'.format(coh_dir, coh_ext)))
+        self.filt_paths = sorted(glob.glob('{}/*{}'.format(filt_dir, filt_ext)))#  provide a list of sorted data file path of filt_ext fometed file 
+        self.bperp_paths = sorted(glob.glob('{}/*{}'.format(bperp_dir, bperp_ext)))#  provide a list of sorted data file path of bperp_ext fometed file 
+        self.coh_paths = sorted(glob.glob('{}/*{}'.format(coh_dir, coh_ext)))#  provide a list of sorted data file path of coh_ext fometed file 
         self.ref_mr_path = ref_mr_path
         self.ref_he_path = ref_he_path
-        self.conv1 = conv1
-        self.conv2 = conv2
+        self.conv1 = conv1 #simple veriable 
+        self.conv2 = conv2 
         self.width = width
         self.height = height
         self.patch_size = patch_size
         self.stride = stride
 
-        self.stack_size = len(self.filt_paths)
+        self.stack_size = len(self.filt_paths) #find out the lenght of the sorted self.filt_path
 
-        self.ddays = np.zeros(self.stack_size)
+        self.ddays = np.zeros(self.stack_size) #make a 1d list 0 of length of 
         self.bperps = np.zeros(self.stack_size)
-
         for idx in tqdm.tqdm(range(self.stack_size)):
             # read delta days
             bperp_path = self.bperp_paths[idx]
