@@ -96,7 +96,10 @@ class SpatialTemporalDataset(Dataset):#inharit the dataset class
 
         mr_target = data_reader.readBin(self.ref_mr_path, self.width, 'float', crop=(coord[0], coord[1], self.patch_size, self.patch_size))
 
-
+    #why he mr outut 
+    
+    
+#
         he_target = data_reader.readBin(self.ref_he_path, self.width, 'float', crop=(coord[0], coord[1], self.patch_size, self.patch_size))
 
         filt_input = np.zeros([self.stack_size, self.patch_size, self.patch_size])    # [N, h ,w] for a single training sample, 
@@ -106,15 +109,16 @@ class SpatialTemporalDataset(Dataset):#inharit the dataset class
             # !! here is an example that only uses phase information 
             filt_input[i] = np.angle(data_reader.readBin(self.filt_paths[i], self.width, 'floatComplex', crop=(coord[0], coord[1], self.patch_size, self.patch_size)))
             #MRC InSAR Library - https://pypi.org/project/MRC-InSAR-Common/  follow this link  for datareader of readbin
-
+ 
             coh_input[i] = data_reader.readBin(self.coh_paths[i], self.width, 'float', crop=(coord[0], coord[1], self.patch_size, self.patch_size))
 
             
-
+   #pt with imshow all the value in the return 
+   #try to find out the out
         return {
             'input': filt_input,    
             'coh': coh_input,
-            'mr': np.expand_dims(mr_target, 0),
+            'mr': np.expand_dims(mr_target, 0),#why  expand_dims()
             'he': np.expand_dims(he_target, 0),
             'ddays':
                 self.
@@ -155,6 +159,7 @@ if __name__ == "__main__":
 
     for batch_idx, batch in enumerate(sample_dataloader):
         print(batch_idx)
+        #pt with imshow
         print(batch['input'].shape)
         print(batch['coh'].shape)
         print(batch['mr'].shape)
