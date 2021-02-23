@@ -1,3 +1,4 @@
+from typing import Counter
 import torch
 import torchvision
 from torchvision import transforms, datasets
@@ -59,3 +60,24 @@ for epoch in range(10): # 3 full passes over the data
         loss.backward()  # apply this loss backwards thru the network's parameters
         optimizer.step()  # attempt to optimize weights to account for loss/gradients
     print(loss)  # print loss. We hope loss (a measure of wrong-ness) declines! 
+#calculate the accuricy 
+"""correct= 0
+total= 0
+with torch.no_grad():
+    for data in  trainset:
+        X,y= data
+        outputs= net(X.view(-1,784))
+        for idx, i in enumerate(outputs):
+            if torch.argmax(1) == y[idx]:
+                correct +=1
+            
+            total +=1
+print(round(correct/total,3))
+print(X)"""
+
+
+
+
+
+
+
